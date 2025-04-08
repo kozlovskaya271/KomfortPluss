@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Каталог диванів</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .card img {
+            height: 180px;
+            object-fit: cover;
+        }
+        .card {
+            height: 100%;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Комфорт плюс</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Головна</a></li>
+            <li class="nav-item"><a class="nav-link active" href="catalog.html">Каталог</a></li>
+            <li class="nav-item"><a class="nav-link" href="reviews.html">Відгуки</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+            <li class="nav-item"><a class="nav-link" href="dostavka-i-oplata.html">Доставка та оплата</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Наші дивани</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/sofa1.jpg" class="card-img-top" alt="Диван 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Кутовий диван</h5>
+                        <p class="card-text">Зручний кутовий диван для вашої вітальні. Тканина, механізм трансформації.</p>
+                        <button class="btn btn-primary" onclick="openOrderForm('Кутовий диван')">Замовити</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/sofa2.jpg" class="card-img-top" alt="Диван 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Диван з підлокітниками</h5>
+                        <p class="card-text">Комфортний диван з м’якими підлокітниками. Ідеально підходить для релаксу.</p>
+                        <button class="btn btn-primary" onclick="openOrderForm('Диван з підлокітниками')">Замовити</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/sofa3.jpg" class="card-img-top" alt="Диван 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Модульний диван</h5>
+                        <p class="card-text">Модульний диван, що трансформується. Стиль та функціональність в одному.</p>
+                        <button class="btn btn-primary" onclick="openOrderForm('Модульний диван')">Замовити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openOrderForm(product) {
+            alert("Форма замовлення для: " + product);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Модальне вікно для форми замовлення -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="orderForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Форма замовлення</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="productName" class="form-label">Товар</label>
+            <input type="text" class="form-control" id="productName" name="product" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="customerName" class="form-label">Ім’я</label>
+            <input type="text" class="form-control" id="customerName" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="customerPhone" class="form-label">Телефон</label>
+            <input type="tel" class="form-control" id="customerPhone" name="phone" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Відправити</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function openOrderForm(product) {
+    const productNameInput = document.getElementById('productName');
+    productNameInput.value = product;
+    const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
+    orderModal.show();
+}
+
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Ваше замовлення надіслано!");
+    const orderModal = bootstrap.Modal.getInstance(document.getElementById('orderModal'));
+    orderModal.hide();
+    this.reset();
+});
+</script>
+<footer class="bg-dark text-white text-center p-3 mt-5">
+  &copy; 2025 Козловська Катерина — Усі права захищені
+</footer>
+</body>
+
+</html>
